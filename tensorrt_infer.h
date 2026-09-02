@@ -31,9 +31,11 @@ private:
     nvinfer1::ICudaEngine* engine_ = nullptr;
     nvinfer1::IExecutionContext* context_ = nullptr;
     cudaStream_t stream_ = nullptr;
+    std::vector<float> input_host_;
     void* buffers_[2] = {nullptr, nullptr}; // 0:输入GPU, 1: 输出GPU
     int input_size_ = 0;    // 输入元素总数
     int output_size_ = 0;   // 输出特征向量长度
     int input_h_ = 224;
     int input_w_ = 224;
+    int input_idx_ = -1, output_idx_ = -1;   // 缓存binding索引
 };
